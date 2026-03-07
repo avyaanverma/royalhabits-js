@@ -98,7 +98,7 @@ html,body {
 /* LOGO BOX */
 
 .logo-box{
-    background:royalblue;
+    background:linear-gradient(135deg,#27187d,#3d2cbf);
     display:flex;
     justify-content:center;
     align-items:center;
@@ -170,6 +170,40 @@ html,body {
     opacity:0.8;
 }
 
+.quote{
+    grid-column: span 3;
+    background:#27187d;
+    color:white;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:30px;
+}
+
+.quote-text{
+    max-width:60%;
+}
+
+.quote-text h2{
+    font-size:2rem;
+    font-weight:700;
+}
+
+.quote-text p{
+    margin-top:10px;
+    opacity:0.85;
+}
+
+.quote-illustration{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.quote{
+    background:linear-gradient(135deg,#27187d,#3d2cbf);
+}
 /* PRODUCTIVITY */
 
 .prod{
