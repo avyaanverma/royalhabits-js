@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css"rel="stylesheet"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,301,400,401,500,501,700,701,900,901&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+<div class="grid">
+
+    <!-- LEFT BIG BOX -->
+    <div class="box reading">
+        <h3>Reading Habit</h3>
+        <div id="days-grid">
+            <div class="days">
+                <span>Mon</span>
+                <span>Tue</span>
+                <span>Wed</span>
+                <span>Thu</span>
+                <span>Fri</span>
+                <span>Sat</span>
+                <span>Sun</span>
+            </div>
+            <div id="tooltip"></div>
+            <div class="github-grid"></div>
+        </div>
+    </div>
+
+    <!-- TOP MIDDLE -->
+    <div class="box logo-box">
+        <h2>RoyalHabits</h2>
+        <img src="./logo.png" alt="">
+    </div>
+
+    <!-- ICON BOX -->
+    <div class="box icons">
+        <i class="ri-book-line"></i>
+        <i class="ri-bar-chart-line"></i>
+        <i class="ri-time-line"></i>
+        <i class="ri-checkbox-circle-line"></i>
+    </div>
+
+    <!-- ANALYTICS -->
+    <div class="box analytics">
+
+    </div>
+
+    <!-- TIMER -->
+    <div class="box timer">
+    <h3 id="todayDate"></h3>
+
+    <div class="clock" id="pomodoroTime">25:00</div>
+
+    <div class="pomodoro-controls">
+        <i id="playBtn" class="ri-play-circle-line"></i>
+        <i id="pauseBtn" class="ri-pause-circle-line"></i>
+        <i id="resetBtn" class="ri-refresh-line"></i>
+        </div>
+
+        <p>Pomodoro Session</p>
+    </div>
+
+    <!-- ROUTE / QUOTE BOX -->
+    <div class="box quote">
+        <div class="quote-text">
+            <h2>AI Generates Your Focus</h2>
+            <p>
+                Small habits build powerful futures.
+                One page, one commit, one step daily.
+            </p>
+        </div>
+
+        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f" alt="">
+    </div>
+
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="./script.js"></script>
+</body>
+</html>
