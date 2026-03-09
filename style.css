@@ -240,10 +240,26 @@ html,body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+}
+
+.analytics div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    border: 10px solid #ff6536;
+    padding: 10px 50px;
+    margin: 10px 0;
+
 }
 
 .analytics img{
-    width: 30px;
+    background:#f7f7ff;
+    transform: translateY(-90%);
+    width: 35px;
+    height: 40px;
     border-radius: 100%;
 }
 

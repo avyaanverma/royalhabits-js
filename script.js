@@ -176,8 +176,10 @@ function updateAnalytics(){
     const streak = getCurrentStreak();
 
     document.querySelector(".analytics").innerHTML = `
-        <img src="./fire.png"/>
-        <p>${streak}</p>
+        <div>
+            <img src="./fire.png"/>
+            <p>${streak}</p>
+        </div>
         <canvas id="habitChart"></canvas>
     `;
 
