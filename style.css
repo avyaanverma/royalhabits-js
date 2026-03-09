@@ -394,7 +394,7 @@ html,body {
     -webkit-appearance: none;
     height: 15px;
     width: 15px;
-    background: #5CC656;
+    background: #3d2cbf;
     border-radius: 50%;
     cursor: pointer;
 }
@@ -422,16 +422,21 @@ html,body {
     cursor: pointer;
 }
 
-#prev i,
-#next i{
+#prev i{
     font-size: 1.5rem;
-    color: white;
+    color:black;
+    transition: 0.2s ease;
+}
+
+#next i{
+    font-size: 1.9rem;
+    color:black;
     transition: 0.2s ease;
 }
 
 #pause i{
     font-size: 2.5rem;   /* Bigger center button */
-    color: #5CC656;
+    color:#3d2cbf;
     border-radius: 100%;
     transition: 0.2s ease;
 }

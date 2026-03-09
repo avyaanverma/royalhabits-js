@@ -332,7 +332,7 @@ audio.addEventListener("timeupdate", ()=>{
         const songProgress = (audio.currentTime/audio.duration) * 100;
         progressBar.value = `${songProgress}`;
         progressBar.style.background = 
-        `linear-gradient(to right, #5CC656 ${songProgress}%, white ${songProgress}%)`;
+        `linear-gradient(to right, #3d2cbf ${songProgress}%, white ${songProgress}%)`;
     }
 })
 
