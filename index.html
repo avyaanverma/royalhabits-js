@@ -47,22 +47,54 @@
     <div class="box analytics">
 
     </div>
-
     <!-- TIMER -->
     <div class="box timer">
-    <h3 id="todayDate"></h3>
-
-    <div class="clock" id="pomodoroTime">25:00</div>
-
-    <div class="pomodoro-controls">
-        <i id="playBtn" class="ri-play-circle-line"></i>
-        <i id="pauseBtn" class="ri-pause-circle-line"></i>
-        <i id="resetBtn" class="ri-refresh-line"></i>
+        <h3 id="todayDate"></h3>
+        
+        <div class="clock" id="pomodoroTime">25:00</div>
+        
+        <div class="pomodoro-controls">
+            <i id="playBtn" class="ri-play-circle-line"></i>
+            <i id="pauseBtn" class="ri-pause-circle-line"></i>
+            <i id="resetBtn" class="ri-refresh-line"></i>
         </div>
-
+        
         <p>Pomodoro Session</p>
     </div>
+    <!-- MUSIC PLAYER -->
+    <div class="box main">
+        <div id="music-player">
+            <audio id="audio" src="./songs/Pehli Dafa.mp3"></audio>
+            <div id="player">
+                <div id="song">
+                    <div id="song-image">
+                        <i class="ri-poker-hearts-line"></i>
+                        <div id="inner"></div>
+                        <!-- <i class="ri-poker-hearts-fill liked"></i> -->
+                        <img src="./songs/Pehli_Dafa_Atif_Aslam.webp" alt="">
+                    </div>
+                    <div id="song-name">Developer</div>
+                    <div id="song-author">Avyaan Verma</div>
+                </div>
+                <div id="media-controls">
+                    <input type="range" id="progress-bar" value="0" min="0" max="100" step="1">
 
+                    <div id="controls">
+                        <div id="prev"><i class="ri-skip-back-fill"></i></div>
+                        <!-- <div id="pause"><i class="ri-pause-circle-fill"></i></div> -->
+                        <div id="pause"><i class="ri-play-circle-fill"></i></div>
+                        <div id="next"><i class="ri-skip-right-fill"></i></div>
+                    </div>
+
+                    <div id="time-display">
+                        <span id="curr-time">0:00</span>
+                        <span id="duration">0:00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <!-- ROUTE / QUOTE BOX -->
     <div class="box quote">
 

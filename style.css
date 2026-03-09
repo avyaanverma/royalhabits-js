@@ -25,7 +25,7 @@ html,body {
     background:#f7f7ff;
     border-radius:18px;
     padding:20px;
-    color:##27187d;
+    color:#27187d;
 }
 
 /* LEFT HABIT BOX */
@@ -134,8 +134,12 @@ html,body {
 /* TIMER */
 
 .timer{
-    grid-column: span 2;
+    grid-column: span 1;
     text-align:center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .clock{
@@ -257,12 +261,13 @@ html,body {
 .pomodoro-controls{
     display:flex;
     justify-content:center;
+    align-items: center;
     gap:15px;
     margin-top:10px;
 }
 
 .pomodoro-controls i{
-    font-size:32px;
+    font-size:52px;
     cursor:pointer;
     color:#27187d;
     transition:0.2s;
@@ -270,4 +275,180 @@ html,body {
 
 .pomodoro-controls i:hover{
     transform:scale(1.2);
+}
+
+
+/* Music Player */
+
+.main{
+    padding: 0 ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+#music-player{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+#player{
+    width: 90%;
+    height: 90%;
+
+}
+
+#player #song{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+#song-name{
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color:#3d2cbf;
+    font-weight: 500;
+    font-size: 1.4rem;
+}
+
+#song-author{
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color:#3d2cbf;
+    font-size: 1.2rem;
+}
+
+#player #song #song-image{
+    height: 10rem;
+    width: 10rem;
+    position: relative;
+}
+
+#song-image i{
+    position: absolute;
+    bottom: 5px;
+    left:-10%;
+    font-size: 30px;
+    color: white;
+    transition: all 0.1s ease-in;
+    cursor: pointer;
+}
+
+#song-image i.liked{
+    font-size: 32px;
+    color: crimson;
+}
+
+
+#song-image img{
+    background:#27187d ;
+    box-shadow: 0 0 30px rgba(0,0,0,0.6);
+    border: 3px solid white;
+    border-radius: 50%;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    /* fade */
+    transition:opacity 1s ease;
+    opacity: 1;
+    
+}
+
+.fade-out{
+    opacity: 0;
+}
+
+.rotate{
+    animation: rotate 6s linear infinite;
+}
+@keyframes rotate{
+    from {transform: rotate(0deg);}
+
+    to{transform: rotate(360deg);}
+}
+
+
+
+#progress-bar{
+    -webkit-appearance: none;
+    appearance: none;
+    outline: none;
+    box-shadow: 4px 4px 12px 2px black;
+    background-color: white;
+    width: 60%;
+    height: 6px;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: width 1s ease-in;
+}
+#progress-bar::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    height: 15px;
+    width: 15px;
+    background: #5CC656;
+    border-radius: 50%;
+    cursor: pointer;
+}
+/* controls */
+#media-controls{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+#controls{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px; /* spacing between buttons */
+}
+
+#controls div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+#prev i,
+#next i{
+    font-size: 1.5rem;
+    color: white;
+    transition: 0.2s ease;
+}
+
+#pause i{
+    font-size: 2.5rem;   /* Bigger center button */
+    color: #5CC656;
+    border-radius: 100%;
+    transition: 0.2s ease;
+}
+#controls i:hover{
+    transform: scale(1.15);
+}
+
+#inner{
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    z-index: 100;
+    border: 1px solid white;
+    background-color: white;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    box-shadow: inset 10px 10px 10px black;
 }

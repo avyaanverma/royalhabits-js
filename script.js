@@ -31,6 +31,7 @@ const tooltip = document.getElementById("tooltip");
 
 // 365
 let habitData = [];
+let habitChart = null;
 
 function generateData(){
     const startDate = new Date(2026, 0, 1); 
@@ -66,8 +67,8 @@ trackBox.forEach((box, index)=>{
     box.addEventListener("click", ()=>{
         const todayIndex = getTodayIndex();
 
-        if(index > todayIndex){
-            return;   // stop clicking future dates
+        if(index !=todayIndex){
+            return;   
         }
         box.classList.toggle("active");
         habitData[index].status = box.classList.contains("active");
@@ -107,7 +108,7 @@ function getCurrentStreak(){
 
     let streak = 0;
 
-    for(let i = todayIndex-1; i >= 0; i--){
+    for(let i = todayIndex; i >= 0; i--){
 
         if(habitData[i].status){
             streak++;
@@ -122,10 +123,14 @@ function getCurrentStreak(){
 }
 
 function renderChart(){
-
+    if(habitChart){
+        habitChart.destroy();
+    }
+    const todayIndex = getTodayIndex();
+    const start = Math.max(0, todayIndex -6)
     const ctx = document.getElementById("habitChart");
 
-    const last7 = habitData.slice(getTodayIndex()-6, getTodayIndex()+1);
+    const last7 = habitData.slice(start, todayIndex+1 );
 
     const labels = last7.map(day => {
         const d = new Date(day.date);
@@ -134,7 +139,7 @@ function renderChart(){
 
     const data = last7.map(day => day.status ? 1 : 0);
 
-    new Chart(ctx, {
+    habitChart = new Chart(ctx, {
         type: "bar",
         data: {
             labels: labels,
@@ -163,6 +168,8 @@ function renderChart(){
     });
 
 }
+
+
 
 function updateAnalytics(){
 
@@ -247,3 +254,137 @@ pauseBtn.addEventListener("click", pauseTimer);
 resetBtn.addEventListener("click", resetTimer);
 
 updateTimerDisplay();
+
+
+
+const like = document.querySelector("#song-image i");
+const audio = document.querySelector("#audio");
+const musicPlayBtn = document.querySelector("#pause i");
+const nextBtn = document.querySelector("#next")
+const prevBtn = document.querySelector("#prev")
+const progressBar = document.querySelector("#progress-bar");
+const currTime = document.querySelector("#curr-time");
+const duration = document.querySelector("#duration");
+
+let songName = document.querySelector("#song-name");
+let songAuthor = document.querySelector("#song-author");
+let songImage = document.querySelector("#song-image img");
+let fileName = audio.src.split("/");
+fileName = fileName[fileName.length-1].replace(".mp3", "").replaceAll("%20", " ");
+
+console.log(fileName);
+
+
+
+let isLiked = false;
+let isPlaying = false;
+
+// like functionality 
+like.addEventListener("click", ()=>{
+    isLiked = !isLiked;
+
+    if(isLiked){
+        like.classList.replace("ri-poker-hearts-line", "ri-poker-hearts-fill");
+        like.classList.add("liked");
+    }else{
+        like.classList.replace("ri-poker-hearts-fill", "ri-poker-hearts-line");
+        like.classList.remove("liked");
+    }
+})
+
+
+// play pause functionality 
+
+
+const play = ()=>{
+    audio.play();
+    musicPlayBtn.classList.replace( "ri-play-circle-fill", "ri-pause-circle-fill");
+    songImage.classList.add("rotate")
+}
+
+const pause = ()=>{
+    audio.pause();
+    musicPlayBtn.classList.replace(  "ri-pause-circle-fill", "ri-play-circle-fill");
+    songImage.classList.remove("rotate")
+}
+
+musicPlayBtn.addEventListener("click", ()=>{
+    isPlaying = !isPlaying;
+    if(isPlaying){
+        play();
+    }else{
+        pause();
+    }
+})
+
+
+
+audio.addEventListener("timeupdate", ()=>{
+    if(audio.duration){
+        function formatTime(time){
+            const minutes = Math.floor(time / 60);
+            const seconds = Math.floor(time % 60);
+            return `${minutes}:${seconds.toString().padStart(2,'0')}`;
+        }
+
+        currTime.textContent = formatTime(audio.currentTime);
+        duration.textContent = formatTime(audio.duration);
+        const songProgress = (audio.currentTime/audio.duration) * 100;
+        progressBar.value = `${songProgress}`;
+        progressBar.style.background = 
+        `linear-gradient(to right, #5CC656 ${songProgress}%, white ${songProgress}%)`;
+    }
+})
+
+progressBar.addEventListener("input", ()=>{
+    if(audio.duration){
+        audio.currentTime = (progressBar.value / 100) * audio.duration;
+    }
+})
+
+let currentSong = 0;
+const songs = [
+    {
+        songName: "Pehli Dafa",
+        image : "./songs/Pehli_Dafa_Atif_Aslam.webp",
+        src: "./songs/Pehli Dafa.mp3",
+        author : "Avyaan Verma",
+    },
+    {
+        songName: "Hanuman Chalisa",
+        image : "./songs/hanuman-chalisa-1440_1721976967.webp",
+        src: "./songs/Shree Hanuman CHalisa.mp3",
+        author : "Gulshan Kumar",
+    },
+];
+
+
+
+// listing songs folder ,making arr
+function updateSong(currSong){
+    songName.textContent = songs[currSong].songName;
+    songImage.src = songs[currSong].image;
+    audio.src = songs[currSong].src;
+    songAuthor.textContent = songs[currSong].author;
+}
+
+updateSong(0);
+nextBtn.addEventListener("click", ()=>{
+    currentSong = (currentSong + 1) % songs.length;
+    updateSong(currentSong);
+    play();
+})
+prevBtn.addEventListener("click", ()=>{
+    currentSong = currentSong == 0 ? songs.length -1 : currentSong - 1;
+    updateSong(currentSong);
+    play();
+})
+
+
+/* autoplay */
+audio.addEventListener("ended", ()=>{
+    currentSong = (currentSong + 1) % songs.length;
+    updateSong(currentSong);
+    play();
+})
+
